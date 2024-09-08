@@ -1,0 +1,21 @@
+* {
+  --primary: #1e90ff;
+}
+
+html, body {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+main {
+  text-align: center;
+  color: white;
+}
+
+hr {
+  width: 100%;
+  max-width: 50vw;
+}

@@ -1,0 +1,114 @@
+{
+	"file" : "index.html",
+	"general" : 
+	{
+		"properties" : 
+		{
+			"eventdate" : 
+			{
+				"index" : 0,
+				"order" : 100,
+				"text" : "Event Date",
+				"type" : "textinput",
+				"value" : "12/31/2099 23:59:59"
+			},
+			"eventname" : 
+			{
+				"index" : 1,
+				"order" : 101,
+				"text" : "Event Name",
+				"type" : "textinput",
+				"value" : "Special Event"
+			},
+			"schemecolor" : 
+			{
+				"order" : 0,
+				"text" : "ui_browse_properties_scheme_color",
+				"type" : "color",
+				"value" : "0 0 0"
+			},
+			"showdays" : 
+			{
+				"condition" : "showdetails.value == false",
+				"index" : 7,
+				"order" : 107,
+				"text" : "Days",
+				"type" : "bool",
+				"value" : true
+			},
+			"showdetails" : 
+			{
+				"index" : 3,
+				"order" : 103,
+				"text" : "Show/Hide Date/Time",
+				"type" : "group",
+				"value" : ""
+			},
+			"showhours" : 
+			{
+				"condition" : "showdetails.value == false",
+				"index" : 8,
+				"order" : 108,
+				"text" : "Hours",
+				"type" : "bool",
+				"value" : true
+			},
+			"showminutes" : 
+			{
+				"condition" : "showdetails.value == false",
+				"index" : 9,
+				"order" : 109,
+				"text" : "Minutes",
+				"type" : "bool",
+				"value" : true
+			},
+			"showmonths" : 
+			{
+				"condition" : "showdetails.value == false",
+				"index" : 5,
+				"order" : 105,
+				"text" : "Months",
+				"type" : "bool",
+				"value" : true
+			},
+			"showseconds" : 
+			{
+				"condition" : "showdetails.value == false",
+				"index" : 10,
+				"order" : 110,
+				"text" : "Seconds",
+				"type" : "bool",
+				"value" : true
+			},
+			"showweeks" : 
+			{
+				"condition" : "showdetails.value == false",
+				"index" : 6,
+				"order" : 106,
+				"text" : "Weeks",
+				"type" : "bool",
+				"value" : true
+			},
+			"showyears" : 
+			{
+				"condition" : "showdetails.value == false",
+				"index" : 4,
+				"order" : 104,
+				"text" : "Years",
+				"type" : "bool",
+				"value" : true
+			},
+			"showzeroes" : 
+			{
+				"index" : 2,
+				"order" : 102,
+				"text" : "Show Zeroes",
+				"type" : "bool",
+				"value" : false
+			}
+		}
+	},
+	"title" : "TimeUntil",
+	"type" : "web",
+	"version" : 0
+}
