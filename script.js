@@ -6,9 +6,16 @@ const week = day * 7;
 const month = day * 30;
 const year = day * 365;
 
+function rgbToCSS(rgb) {
+    var customColor = rgb.split(" ");
+    customColor = customColor.map((c) => Math.ceil(c * 255));
+    return "rgb(" + customColor + ")";
+}
+
 var wpProperties = {
     eventDate: "12/31/2099 23:59:59",
     eventName: "Special Event",
+    timeEndText: "No Time Left !",
     showYears: true,
     showMonths: true,
     showWeeks: true,
@@ -19,12 +26,39 @@ var wpProperties = {
     showZeroes: false,
 };
 
-// TODO: Custom Date Locales, No Time Left String, Background, Colour Prefs
+// TODO: Custom Date Locales, Translation
+var timeUntilDate = new Date(wpProperties.eventDate).getTime();
+var timeUntilElement = document.getElementById("timeUntil");
+var untilEventName = document.getElementById("untilEventName");
+var untilEventDate = document.getElementById("untilEventDate");
+var animationElement = document.getElementById("tiles");
+var animationTiles = animationElement.childNodes;
 
 window.wallpaperPropertyListener = {
     applyUserProperties: function (properties) {
-        if (properties.eventdate) wpProperties.eventDate = properties.eventdate.value;
-        if (properties.eventname) wpProperties.eventName = properties.eventname.value;
+        if (properties.eventdate) {
+            wpProperties.eventDate = properties.eventdate.value;
+            timeUntilDate = new Date(wpProperties.eventDate).getTime();
+        }
+        if (properties.eventname)
+            untilEventName.innerHTML = properties.eventname.value;
+        if (properties.showeventdate)
+            untilEventDate.innerHTML = properties.showeventdate.value ? new Date(wpProperties.eventDate).toLocaleString() : "";
+
+        if (properties.schemecolor) {
+            var backgroundColor = rgbToCSS(properties.schemecolor.value);
+            document.documentElement.style.backgroundColor = backgroundColor;
+            document.body.style.backgroundColor = backgroundColor;
+        }
+        if (properties.textcolor) {
+            var textColor = rgbToCSS(properties.textcolor.value);
+            document.documentElement.style.color = textColor;
+            document.body.style.color = textColor;
+        }
+        if (properties.showanimation)
+            animationElement.style.display = properties.showanimation.value ? "block": "none";
+
+        if (properties.timeendtext) wpProperties.timeEndText = properties.timeendtext.value;
         if (properties.showyears) wpProperties.showYears = properties.showyears.value;
         if (properties.showmonths) wpProperties.showMonths = properties.showmonths.value;
         if (properties.showweeks) wpProperties.showWeeks = properties.showweeks.value;
@@ -36,17 +70,10 @@ window.wallpaperPropertyListener = {
     },
 };
 
-var timeUntilElement = document.getElementById("timeUntil");
-var untilEventName = document.getElementById("untilEventName");
-var untilEventDate = document.getElementById("untilEventDate");
-
 setInterval(function () {
-    untilEventName.innerHTML = wpProperties.eventName;
-    untilEventDate.innerHTML = new Date(wpProperties.eventDate).toDateString();
-    var timeUntilDate = new Date(wpProperties.eventDate).getTime();
     var timeLeft = timeUntilDate - new Date().getTime();
     if (timeLeft < 0) {
-        timeUntilElement.innerHTML = "No Time Left !";
+        timeUntilElement.innerHTML = wpProperties.timeEndText;
         return;
     }
 
