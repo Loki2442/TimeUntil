@@ -16,6 +16,10 @@ body {
   color: white;
 }
 
+h1 {
+  padding-bottom: 1vh;
+}
+
 hr {
   margin: auto;
   width: 60%;
@@ -27,6 +31,10 @@ hr {
     rgba(255, 255, 255, 0.75),
     rgba(255, 255, 255, 0)
   );
+}
+
+main p {
+  padding-top: 1vh;
 }
 
 #untilEventName {

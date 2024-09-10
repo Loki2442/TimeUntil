@@ -16,6 +16,7 @@ var wpProperties = {
     eventDate: "12/31/2099 23:59:59",
     eventName: "Special Event",
     timeEndText: "No Time Left !",
+    showEventDate: true,
     showYears: true,
     showMonths: true,
     showWeeks: true,
@@ -26,7 +27,6 @@ var wpProperties = {
     showZeroes: false,
 };
 
-// TODO: Custom Date Locales, Translation
 var timeUntilDate = new Date(wpProperties.eventDate).getTime();
 var timeUntilElement = document.getElementById("timeUntil");
 var untilEventName = document.getElementById("untilEventName");
@@ -37,13 +37,16 @@ var animationTiles = animationElement.childNodes;
 window.wallpaperPropertyListener = {
     applyUserProperties: function (properties) {
         if (properties.eventdate) {
-            wpProperties.eventDate = properties.eventdate.value;
+            wpProperties.eventDate = properties.eventdate.value.trim();
             timeUntilDate = new Date(wpProperties.eventDate).getTime();
+            untilEventDate.innerText = wpProperties.showEventDate ? new Date(wpProperties.eventDate).toLocaleString() : "";
         }
         if (properties.eventname)
-            untilEventName.innerHTML = properties.eventname.value;
-        if (properties.showeventdate)
-            untilEventDate.innerHTML = properties.showeventdate.value ? new Date(wpProperties.eventDate).toLocaleString() : "";
+            untilEventName.innerText = properties.eventname.value.trim();
+        if (properties.showeventdate) {
+            wpProperties.showEventDate = properties.showeventdate.value;
+            untilEventDate.innerText = wpProperties.showEventDate ? new Date(wpProperties.eventDate).toLocaleString() : "";
+        }
 
         if (properties.schemecolor) {
             var backgroundColor = rgbToCSS(properties.schemecolor.value);
@@ -58,7 +61,7 @@ window.wallpaperPropertyListener = {
         if (properties.showanimation)
             animationElement.style.display = properties.showanimation.value ? "block": "none";
 
-        if (properties.timeendtext) wpProperties.timeEndText = properties.timeendtext.value;
+        if (properties.timeendtext) wpProperties.timeEndText = properties.timeendtext.value.trim();
         if (properties.showyears) wpProperties.showYears = properties.showyears.value;
         if (properties.showmonths) wpProperties.showMonths = properties.showmonths.value;
         if (properties.showweeks) wpProperties.showWeeks = properties.showweeks.value;
@@ -73,7 +76,7 @@ window.wallpaperPropertyListener = {
 setInterval(function () {
     var timeLeft = timeUntilDate - new Date().getTime();
     if (timeLeft < 0) {
-        timeUntilElement.innerHTML = wpProperties.timeEndText;
+        timeUntilElement.innerText = wpProperties.timeEndText;
         return;
     }
 
@@ -108,21 +111,21 @@ setInterval(function () {
 
     var timeUntilString = "";
     if (wpProperties.showZeroes) {
-        if (wpProperties.showYears) timeUntilString += `${years} Years `;
-        if (wpProperties.showMonths) timeUntilString += `${months} Months `;
-        if (wpProperties.showWeeks) timeUntilString += `${weeks} Weeks `;
-        if (wpProperties.showDays) timeUntilString += `${days} Days `;
-        if (wpProperties.showHours) timeUntilString += `${hours} Hours `;
-        if (wpProperties.showMinutes) timeUntilString += `${minutes} Minutes `;
-        if (wpProperties.showSeconds) timeUntilString += `${seconds} Seconds`;
+        if (wpProperties.showYears) timeUntilString += `${years} Year${years > 1 ? "s" : ""} `;
+        if (wpProperties.showMonths) timeUntilString += `${months} Month${months > 1 ? "s" : ""} `;
+        if (wpProperties.showWeeks) timeUntilString += `${weeks} Week${weeks > 1 ? "s" : ""} `;
+        if (wpProperties.showDays) timeUntilString += `${days} Day${days > 1 ? "s" : ""} `;
+        if (wpProperties.showHours) timeUntilString += `${hours} Hour${hours > 1 ? "s" : ""} `;
+        if (wpProperties.showMinutes) timeUntilString += `${minutes} Minute${minutes > 1 ? "s" : ""} `;
+        if (wpProperties.showSeconds) timeUntilString += `${seconds} Second${seconds > 1 ? "s" : ""}`;
     } else {
-        if (years > 0) timeUntilString += `${years} Years `;
-        if (months > 0) timeUntilString += `${months} Months `;
-        if (weeks > 0) timeUntilString += `${weeks} Weeks `;
-        if (days > 0) timeUntilString += `${days} Days `;
-        if (hours > 0) timeUntilString += `${hours} Hours `;
-        if (minutes > 0) timeUntilString += `${minutes} Minutes `;
-        if (seconds > 0) timeUntilString += `${seconds} Seconds`;
+        if (years > 0) timeUntilString += `${years} Year${years > 1 ? "s" : ""} `;
+        if (months > 0) timeUntilString += `${months} Month${months > 1 ? "s" : ""} `;
+        if (weeks > 0) timeUntilString += `${weeks} Week${weeks > 1 ? "s" : ""} `;
+        if (days > 0) timeUntilString += `${days} Day${days > 1 ? "s" : ""} `;
+        if (hours > 0) timeUntilString += `${hours} Hour${hours > 1 ? "s" : ""} `;
+        if (minutes > 0) timeUntilString += `${minutes} Minute${minutes > 1 ? "s" : ""} `;
+        if (seconds > 0) timeUntilString += `${seconds} Second${seconds > 1 ? "s" : ""}`;
     }
-    timeUntilElement.innerHTML = timeUntilString;
+    timeUntilElement.innerText = timeUntilString.trim();
 }, second);

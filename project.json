@@ -1,4 +1,6 @@
 {
+	"contentrating" : "Everyone",
+	"description" : "Displays the Time Left until a specified Datetime, along with some Customization Options for various aspects of the Wallpaper.\n\n⏳",
 	"file" : "index.html",
 	"general" : 
 	{
@@ -141,9 +143,12 @@
 		}
 	},
 	"preview" : "preview.gif",
-	"snapshotformat" : 0,
-	"snapshotoverlay" : "",
+	"ratingsex" : "none",
+	"ratingviolence" : "none",
+	"tags" : [ "Abstract" ],
 	"title" : "TimeUntil",
 	"type" : "web",
-	"version" : 0
+	"version" : 1,
+	"workshopid" : "3328616452",
+	"workshopurl" : "steam://url/CommunityFilePage/3328616452"
 }
