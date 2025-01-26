@@ -147,8 +147,9 @@
 	"ratingviolence" : "none",
 	"tags" : [ "Abstract" ],
 	"title" : "TimeUntil",
-	"type" : "web",
-	"version" : 1,
+	"type" : "Web",
+	"version" : 2,
+	"visibility" : "public",
 	"workshopid" : "3328616452",
 	"workshopurl" : "steam://url/CommunityFilePage/3328616452"
 }
